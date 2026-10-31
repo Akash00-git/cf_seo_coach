@@ -1,0 +1,52 @@
+// SEO Coach section inside the Optimize SEO dialog. Transparent background +
+// inherited colours so it reads in both light and dark editors.
+.o_seo_configuration .cf-seo-coach, .cf-seo-coach {
+    font-size: 13px;
+    color: inherit;
+
+    .cf-seo-sep { margin: 14px 0; border-color: rgba(128, 128, 128, 0.3); }
+
+    .cf-seo-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .cf-seo-brand { font-weight: 700; font-size: 15px; }
+    .cf-seo-scores { display: flex; gap: 14px; }
+    .cf-seo-badge { display: inline-flex; align-items: center; gap: 6px; opacity: 0.9; }
+
+    .cf-seo-label { font-weight: 600; display: block; margin: 6px 0 3px; font-size: 12px; }
+
+    .cf-seo-section { margin-top: 14px; }
+    .cf-seo-section-title {
+        font-weight: 600;
+        opacity: 0.7;
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        margin-bottom: 6px;
+    }
+    .cf-seo-count { opacity: 0.6; text-transform: none; letter-spacing: 0; font-weight: 400; }
+    .cf-seo-schema { font-family: monospace; font-size: 12px; }
+
+    .cf-seo-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li { display: flex; align-items: flex-start; gap: 9px; padding: 3px 0; }
+    }
+    .cf-seo-text { line-height: 1.45; }
+
+    .cf-seo-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        display: inline-block;
+        flex: 0 0 auto;
+        margin-top: 3px;
+    }
+    .cf-seo-dot-good { background: #4caf50; }
+    .cf-seo-dot-ok { background: #ee9c13; }
+    .cf-seo-dot-bad { background: #dc3232; }
+}

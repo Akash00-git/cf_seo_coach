@@ -1,0 +1,21 @@
+<odoo>
+  <!-- Universal SEO head: per-page canonical override + robots meta + JSON-LD
+       schema. Inherits website.layout but only changes behaviour when the
+       current page's record carries these SEO Coach fields (any page type:
+       static pages, blog posts, products, events...). Other pages are
+       unaffected. Everything read here is a FIELD (never a method) so it works
+       on static pages, which inherit the SEO base only by field delegation. -->
+  <template id="cf_seo_head" inherit_id="website.layout" name="CF SEO head">
+    <xpath expr="//link[@rel='canonical']" position="attributes">
+      <attribute name="t-att-href">(main_object and 'cf_canonical_url' in main_object._fields and main_object.sudo().cf_canonical_url) or website._get_canonical_url()</attribute>
+    </xpath>
+    <xpath expr="//link[@rel='canonical']" position="after">
+      <t t-if="main_object and 'cf_schema_head' in main_object._fields"
+         t-out="main_object.sudo().cf_schema_head"/>
+    </xpath>
+    <xpath expr="//meta[@name='robots']" position="after">
+      <meta t-if="main_object and 'cf_robots_content' in main_object._fields and main_object.sudo().cf_robots_content"
+            name="robots" t-att-content="main_object.sudo().cf_robots_content"/>
+    </xpath>
+  </template>
+</odoo>

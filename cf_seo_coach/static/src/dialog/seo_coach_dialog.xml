@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-inherit="website.OptimizeSEODialog" t-inherit-mode="extension">
+    <xpath expr="//SeoChecks" position="after">
+      <t t-if="canEditSeo">
+        <hr class="cf-seo-sep"/>
+        <div class="cf-seo-coach">
+          <div class="cf-seo-head">
+            <span class="cf-seo-brand">SEO Coach</span>
+            <div class="cf-seo-scores">
+              <span class="cf-seo-badge">
+                <span t-att-class="cfDot(cfAnalysis.seo.rating)"/> SEO <b t-esc="cfAnalysis.seo.score"/>/100
+              </span>
+              <span class="cf-seo-badge">
+                <span t-att-class="cfDot(cfAnalysis.readability.rating)"/> Readability <b t-esc="cfAnalysis.readability.score"/>/100
+              </span>
+            </div>
+          </div>
+
+          <label class="cf-seo-label">Focus keyphrase</label>
+          <input type="text" class="form-control" t-model="cf.keyphrase"
+                 placeholder="e.g. corporate flowers dubai"/>
+          <label class="cf-seo-label mt-2">Related keyphrases</label>
+          <input type="text" class="form-control" t-model="cf.related"
+                 placeholder="extra phrases, comma-separated"/>
+          <div class="form-check mt-2">
+            <input class="form-check-input" type="checkbox" t-model="cf.cornerstone" id="cf_cornerstone"/>
+            <label class="form-check-label" for="cf_cornerstone">Cornerstone content (higher word-count target)</label>
+          </div>
+
+          <div class="cf-seo-section">
+            <div class="cf-seo-section-title">SEO analysis</div>
+            <ul class="cf-seo-list">
+              <li t-foreach="cfAnalysis.seo.results" t-as="r" t-key="r_index">
+                <span t-att-class="cfDot(r.score)"/><span class="cf-seo-text" t-esc="r.text"/>
+              </li>
+            </ul>
+          </div>
+
+          <div class="cf-seo-section">
+            <div class="cf-seo-section-title">Readability — <t t-esc="cfAnalysis.wordCount"/> words</div>
+            <ul class="cf-seo-list">
+              <li t-foreach="cfAnalysis.readability.results" t-as="r" t-key="r_index">
+                <span t-att-class="cfDot(r.score)"/><span class="cf-seo-text" t-esc="r.text"/>
+              </li>
+            </ul>
+          </div>
+
+          <div class="cf-seo-section">
+            <div class="cf-seo-section-title">Social (Facebook / X)</div>
+            <label class="cf-seo-label">Social title</label>
+            <input type="text" class="form-control" t-model="cf.socialTitle"
+                   placeholder="Title when shared (defaults to the SEO title)"/>
+            <label class="cf-seo-label mt-1">Social description</label>
+            <textarea class="form-control" rows="2" t-model="cf.socialDescription"
+                      placeholder="Description when shared"/>
+            <label class="cf-seo-label mt-1">Social image URL</label>
+            <input type="text" class="form-control" t-model="cf.socialImage"
+                   placeholder="/web/image/...  or  https://..."/>
+          </div>
+
+          <div class="cf-seo-section">
+            <div class="cf-seo-section-title">
+              Schema (JSON-LD) <span class="cf-seo-count" t-esc="cfSchemaValid()"/>
+            </div>
+            <textarea class="form-control cf-seo-schema" rows="4" t-model="cf.schema"
+                      placeholder='Paste JSON-LD, e.g. {"@context":"https://schema.org","@type":"Article","headline":"..."}'/>
+          </div>
+
+          <div class="cf-seo-section">
+            <div class="cf-seo-section-title">Advanced</div>
+            <label class="cf-seo-label">Canonical URL</label>
+            <input type="text" class="form-control" t-model="cf.canonical"
+                   placeholder="leave empty for the default URL"/>
+            <div class="cf-seo-robots mt-2">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" t-model="cf.noindex" id="cf_noindex"/>
+                <label class="form-check-label" for="cf_noindex">No index</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" t-model="cf.nofollow" id="cf_nofollow"/>
+                <label class="form-check-label" for="cf_nofollow">No follow</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" t-model="cf.noarchive" id="cf_noarchive"/>
+                <label class="form-check-label" for="cf_noarchive">No archive</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" t-model="cf.nosnippet" id="cf_nosnippet"/>
+                <label class="form-check-label" for="cf_nosnippet">No snippet</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" t-model="cf.noimageindex" id="cf_noimageindex"/>
+                <label class="form-check-label" for="cf_noimageindex">No image index</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </t>
+    </xpath>
+  </t>
+</templates>
