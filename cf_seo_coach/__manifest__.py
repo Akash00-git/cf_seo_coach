@@ -1,6 +1,6 @@
 {
     'name': 'CF SEO Coach',
-    'version': '19.0.2.0.6',
+    'version': '19.0.2.0.7',
     'summary': 'Live Yoast-style SEO & readability coach: keyphrase, meta tags, Google snippet preview, JSON-LD schema, Open Graph, canonical & robots — every page',
     'description': """
 CF SEO Coach
@@ -51,7 +51,7 @@ on-page SEO optimisation for your Odoo website.
             'cf_seo_coach/static/src/dialog/seo_coach_dialog.scss',
         ],
     },
-    'images': ['static/description/banner.png'],
+    'images': ['static/description/banner.gif'],
     'installable': True,
     'application': False,
 }
