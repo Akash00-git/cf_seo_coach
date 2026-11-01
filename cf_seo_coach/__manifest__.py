@@ -1,6 +1,6 @@
 {
     'name': 'SEO Coach',
-    'version': '19.0.3.0.2',
+    'version': '19.0.3.0.3',
     'summary': 'All-in-one SEO toolkit: live Yoast-style coach, Google Tag Manager & GA4, llms.txt for AI search, JSON-LD schema, bulk SEO editor, SEO hardening',
     'description': """
 SEO Coach — the all-in-one Odoo SEO toolkit
@@ -79,5 +79,5 @@ editing or on-page SEO optimisation for your Odoo website.
     },
     'images': ['static/description/banner.gif'],
     'installable': True,
-    'application': False,
+    'application': True,
 }
