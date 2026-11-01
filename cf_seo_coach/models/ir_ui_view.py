@@ -14,5 +14,13 @@ class IrUiView(models.Model):
         # Runs once per registry load (install / upgrade / restart), after the
         # SEO fields are propagated to every concrete model, so it heals any
         # columns dropped by an upgrade. Idempotent (ADD COLUMN IF NOT EXISTS).
-        _cf_init_seo_models(self.env)
+        #
+        # Skip while this module is being uninstalled ('to remove'): otherwise
+        # we re-create the very columns the uninstall just dropped and leave
+        # orphan cf_* columns on core tables (res_partner, product_template,
+        # blog_post, ...), i.e. an unclean uninstall.
+        mod = self.env['ir.module.module'].sudo().search(
+            [('name', '=', 'cf_seo_coach')], limit=1)
+        if mod and mod.state not in ('to remove', 'uninstalled'):
+            _cf_init_seo_models(self.env)
         return res

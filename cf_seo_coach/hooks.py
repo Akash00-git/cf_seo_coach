@@ -35,3 +35,20 @@ def _cf_init_seo_models(env):
                 'ALTER TABLE "%s" ADD COLUMN IF NOT EXISTS "%s" %s'
                 % (model._table, col, field.column_type[1])
             )
+
+
+def _cf_uninstall_cleanup(env):
+    """Safety net on uninstall: drop every SEO Coach stored column from all
+    tables, so no orphan ``cf_*`` columns are left behind on core tables
+    (res_partner, product_template, blog_post, blog_tag, ...) even if a
+    registry reload re-created them. Column names are unique to this module,
+    so matching by name across tables is safe. Idempotent (DROP ... IF EXISTS)."""
+    env.cr.execute(
+        "SELECT table_name, column_name FROM information_schema.columns "
+        "WHERE column_name = ANY(%s)",
+        (list(CF_STORED_FIELDS),),
+    )
+    for table, col in env.cr.fetchall():
+        env.cr.execute(
+            'ALTER TABLE "%s" DROP COLUMN IF EXISTS "%s"' % (table, col)
+        )
