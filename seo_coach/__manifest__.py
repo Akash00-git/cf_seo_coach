@@ -45,10 +45,10 @@ on-page SEO optimisation for your Odoo website.
     ],
     'assets': {
         'website.assets_editor': [
-            'cf_seo_coach/static/src/seo_coach/seo_analysis.js',
-            'cf_seo_coach/static/src/dialog/seo_coach_dialog.js',
-            'cf_seo_coach/static/src/dialog/seo_coach_dialog.xml',
-            'cf_seo_coach/static/src/dialog/seo_coach_dialog.scss',
+            'seo_coach/static/src/seo_coach/seo_analysis.js',
+            'seo_coach/static/src/dialog/seo_coach_dialog.js',
+            'seo_coach/static/src/dialog/seo_coach_dialog.xml',
+            'seo_coach/static/src/dialog/seo_coach_dialog.scss',
         ],
     },
     'images': ['static/description/banner.gif'],
