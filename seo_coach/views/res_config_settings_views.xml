@@ -1,0 +1,37 @@
+<odoo>
+  <record id="res_config_settings_view_form_seo_coach" model="ir.ui.view">
+    <field name="name">res.config.settings.view.form.inherit.seo.coach</field>
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//app[@name='website']" position="inside">
+        <block title="SEO Coach" name="seo_coach_settings_block">
+          <setting string="Google Tag Manager"
+                   help="Inject your GTM container across the whole website.">
+            <field name="cf_gtm_container_id" placeholder="GTM-XXXXXXX"/>
+          </setting>
+          <setting string="Google Analytics 4"
+                   help="Inject your GA4 measurement tag across the whole website.">
+            <field name="cf_ga4_measurement_id" placeholder="G-XXXXXXXXXX"/>
+          </setting>
+          <setting string="AI search (llms.txt)"
+                   help="Publish /llms.txt so AI search engines (ChatGPT, Perplexity, Gemini) can discover your pages.">
+            <field name="cf_llms_txt_enabled"/>
+            <field name="cf_llms_txt_intro" nolabel="1"
+                   placeholder="One or two lines describing your site..."
+                   invisible="not cf_llms_txt_enabled"/>
+          </setting>
+          <setting string="SEO hardening"
+                   help="Avoid duplicate pages in search results.">
+            <field name="cf_harden_queryparams"/>
+            <field name="cf_harden_search"/>
+          </setting>
+          <setting string="Auto JSON-LD schema"
+                   help="Add Organization + WebSite structured data to the homepage.">
+            <field name="cf_auto_schema_enabled"/>
+          </setting>
+        </block>
+      </xpath>
+    </field>
+  </record>
+</odoo>

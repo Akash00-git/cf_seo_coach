@@ -1,0 +1,45 @@
+<odoo>
+  <!-- Analytics injection (Google Tag Manager + GA4) and SEO hardening.
+       Everything is opt-in per website, so nothing is emitted until an admin
+       fills the setting. Inherits website.layout, affecting only the <head>
+       and a GTM <noscript> fallback. -->
+  <template id="cf_analytics_head" inherit_id="website.layout"
+            name="SEO Coach: analytics + hardening">
+    <xpath expr="//head" position="inside">
+      <!-- Google Tag Manager -->
+      <t t-if="website and website.cf_gtm_container_id">
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+        </script>
+        <script async="async"
+                t-attf-src="https://www.googletagmanager.com/gtm.js?id=#{website.cf_gtm_container_id}"/>
+      </t>
+      <!-- Google Analytics 4 -->
+      <t t-if="website and website.cf_ga4_measurement_id">
+        <script async="async"
+                t-attf-src="https://www.googletagmanager.com/gtag/js?id=#{website.cf_ga4_measurement_id}"/>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '<t t-esc="website.cf_ga4_measurement_id"/>');
+        </script>
+      </t>
+      <!-- SEO hardening: noindex filtered / search URLs -->
+      <meta t-if="website and request and ((website.cf_harden_queryparams and request.httprequest.args) or (website.cf_harden_search and request.httprequest.args.get('search')))"
+            name="robots" content="noindex, follow"/>
+      <!-- Auto JSON-LD schema on the homepage -->
+      <t t-if="website and website.cf_auto_schema_enabled and request and request.httprequest.path == '/'"
+         t-out="website.cf_get_auto_schema()"/>
+    </xpath>
+
+    <!-- GTM no-script fallback -->
+    <xpath expr="//body" position="inside">
+      <noscript t-if="website and website.cf_gtm_container_id">
+        <iframe height="0" width="0" style="display:none;visibility:hidden"
+                t-attf-src="https://www.googletagmanager.com/ns.html?id=#{website.cf_gtm_container_id}"/>
+      </noscript>
+    </xpath>
+  </template>
+</odoo>

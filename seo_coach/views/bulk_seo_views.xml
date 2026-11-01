@@ -1,0 +1,37 @@
+<odoo>
+  <!-- Bulk SEO editor: an inline-editable list of website pages so SEO fields
+       can be set across many pages at once, instead of one Optimize-SEO dialog
+       at a time. -->
+  <record id="view_website_page_seo_bulk_list" model="ir.ui.view">
+    <field name="name">website.page.seo.bulk.list</field>
+    <field name="model">website.page</field>
+    <field name="arch" type="xml">
+      <list editable="bottom" string="Bulk SEO" multi_edit="1">
+        <field name="url" readonly="1"/>
+        <field name="name" optional="show"/>
+        <field name="website_indexed" optional="hide"/>
+        <field name="cf_seo_keyphrase" string="Focus keyphrase"/>
+        <field name="cf_is_cornerstone" string="Cornerstone" optional="hide"/>
+        <field name="cf_robots_noindex" string="No index"/>
+        <field name="cf_robots_nofollow" string="No follow" optional="hide"/>
+        <field name="cf_canonical_url" string="Canonical URL" optional="hide"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="action_seo_bulk_pages" model="ir.actions.act_window">
+    <field name="name">Bulk SEO — Pages</field>
+    <field name="res_model">website.page</field>
+    <field name="view_mode">list</field>
+    <field name="view_id" ref="view_website_page_seo_bulk_list"/>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">No website pages yet</p>
+      <p>Create website pages, then set their focus keyphrase and robots flags here in bulk.</p>
+    </field>
+  </record>
+
+  <menuitem id="menu_seo_coach_root" name="SEO Coach"
+            parent="website.menu_website_configuration" sequence="90"/>
+  <menuitem id="menu_seo_bulk_pages" name="Bulk SEO (Pages)"
+            parent="menu_seo_coach_root" action="action_seo_bulk_pages" sequence="10"/>
+</odoo>

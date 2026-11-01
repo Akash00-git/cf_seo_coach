@@ -1,37 +1,60 @@
 {
     'name': 'SEO Coach',
-    'version': '19.0.2.0.9',
-    'summary': 'Live Yoast-style SEO & readability coach: keyphrase, meta tags, Google snippet preview, JSON-LD schema, Open Graph, canonical & robots — every page',
+    'version': '19.0.3.0.0',
+    'summary': 'All-in-one SEO toolkit: live Yoast-style coach, Google Tag Manager & GA4, llms.txt for AI search, JSON-LD schema, bulk SEO editor, SEO hardening',
     'description': """
-SEO Coach
-============
-A Yoast-inspired, real-time SEO and readability assistant built natively in
-Odoo (OWL). It analyses your focus keyphrase, meta title and meta description,
-Google snippet preview, Open Graph / Twitter cards and JSON-LD structured data,
-and works on **every website page** — static pages, blog posts, eCommerce
-products, events and anything else that uses Odoo's website SEO — with no extra
-apps required.
+SEO Coach — the all-in-one Odoo SEO toolkit
+===========================================
 
-What it adds to each page
--------------------------
-* A focus-keyphrase analysis (keyphrase in the title, URL, intro, subheadings,
-  density) with a traffic-light score.
-* A readability analysis (sentence length, paragraphs, subheadings, Flesch
-  reading ease, complex words).
-* An editable Google snippet preview (desktop / mobile).
-* Social sharing control (Facebook / X title, description and image).
-* A structured-data (JSON-LD schema) box rendered into the page <head>.
-* Advanced controls: canonical URL override and meta-robots directives
-  (noindex / nofollow / noarchive / nosnippet / noimageindex).
+A Yoast-inspired, real-time SEO and readability coach built natively in Odoo
+(OWL), plus the site-wide tools you need to rank: analytics, AI-search, schema,
+bulk editing and hardening. Works on every website page and depends only on
+Website — no extra apps required.
 
-Native already handled by Odoo (no plugin needed): XML sitemap, robots.txt and
-URL redirects.
+1. Live SEO & readability coach (on every page)
+-----------------------------------------------
 
+- Focus keyphrase analysis: keyphrase in title, URL, intro, subheadings, density.
+- Readability analysis: sentence length, paragraphs, subheadings, Flesch score.
+- Editable Google snippet preview (desktop / mobile).
+- Social sharing control (Facebook / X title, description, image).
+- Per-page JSON-LD schema box, canonical URL and meta-robots directives.
+
+2. Analytics injection — Google Tag Manager & GA4
+-------------------------------------------------
+
+- Paste your GTM container id and GA4 measurement id in Website settings.
+- The scripts are injected site-wide (head + GTM noscript) automatically.
+
+3. llms.txt for AI search (GEO / AEO)
+-------------------------------------
+
+- Publish an /llms.txt file that lists your pages, blog posts, products and
+  events so AI search engines (ChatGPT, Perplexity, Gemini) can find you.
+
+4. Bulk SEO editor
+------------------
+
+- Set the focus keyphrase, robots flags and canonical across many pages at once
+  from one inline-editable list, instead of page by page.
+
+5. SEO hardening
+----------------
+
+- Optionally no-index filtered / query-string URLs and the site search results
+  page to avoid duplicate pages diluting your ranking.
+
+6. Auto JSON-LD schema
+----------------------
+
+- Add Organization + WebSite structured data to the homepage with one toggle.
+
+Already native in Odoo (not duplicated): XML sitemap, robots.txt, URL redirects.
 No external libraries — the analysis engine is pure JavaScript.
 
 Ideal if you are searching for an Odoo SEO app, "Yoast for Odoo", a meta tag
-manager, schema / structured-data (JSON-LD) tools, readability analysis or
-on-page SEO optimisation for your Odoo website.
+manager, Google Tag Manager / GA4, llms.txt, schema / structured data, bulk SEO
+editing or on-page SEO optimisation for your Odoo website.
 """,
     'category': 'Website/Website',
     'author': 'Webooz',
@@ -42,6 +65,9 @@ on-page SEO optimisation for your Odoo website.
     'depends': ['website'],
     'data': [
         'views/seo_head.xml',
+        'views/website_templates.xml',
+        'views/res_config_settings_views.xml',
+        'views/bulk_seo_views.xml',
     ],
     'assets': {
         'website.assets_editor': [
