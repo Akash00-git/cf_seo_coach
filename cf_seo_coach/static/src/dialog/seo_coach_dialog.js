@@ -1,4 +1,5 @@
 /** @odoo-module **/
+// Copyright (C) 2026 Webooz <akash00.hit@gmail.com>. Part of SEO Coach (LGPL-3).
 // Extends Odoo's built-in "Optimize SEO" dialog (website.OptimizeSEODialog)
 // with the SEO Coach: a focus-keyphrase + readability analysis, social
 // sharing fields, a JSON-LD schema box and advanced canonical / robots

@@ -1,4 +1,5 @@
 /** @odoo-module **/
+// Copyright (C) 2026 Webooz <akash00.hit@gmail.com>. Part of SEO Coach (LGPL-3).
 /**
  * Pure-JS SEO + readability analysis engine, modelled on Yoast SEO 28.7.
  * Mirrors Yoast's real assessments (titleWidth[px], textLength, metaDescription*,
@@ -13,7 +14,8 @@
  *       wordCount, flesch}
  */
 
-const SITE_HOST = "choiceflowers";
+const SITE_HOST =
+    (typeof window !== "undefined" && window.location && window.location.host) || "";
 const SCORE = { good: 9, ok: 6, bad: 3 };
 
 function parse(html) {
@@ -206,8 +208,11 @@ export function analyze(input) {
         `Article length: ${wordCount} words (${input.cornerstone ? "cornerstone target " + goodW + "+" : "Yoast minimum 300"}).`
     );
     const links = [...doc.querySelectorAll("a[href]")].map((a) => a.getAttribute("href") || "");
-    const internal = links.filter((h) => h.startsWith("/") || h.includes(host)).length;
-    const external = links.filter((h) => (h.startsWith("http://") || h.startsWith("https://")) && !h.includes(host)).length;
+    const sameHost = (h) => Boolean(host) && h.includes(host);
+    const internal = links.filter((h) => h.startsWith("/") || sameHost(h)).length;
+    const external = links.filter(
+        (h) => (h.startsWith("http://") || h.startsWith("https://")) && !sameHost(h)
+    ).length;
     add(internal ? "good" : "ok", `Internal links: ${internal}${internal ? "" : " — link to related pages."}`);
     add(external ? "good" : "ok", `Outbound links: ${external}${external ? "" : " — cite a source where useful."}`);
     const imgs = [...doc.querySelectorAll("img")];

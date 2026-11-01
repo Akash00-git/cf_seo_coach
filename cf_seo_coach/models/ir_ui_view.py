@@ -1,4 +1,4 @@
-# Part of CF SEO Coach. See LICENSE file for full copyright and licensing details.
+# Part of SEO Coach. Copyright (C) 2026 Webooz <akash00.hit@gmail.com>. See LICENSE for details.
 from odoo import models
 
 from ..hooks import _cf_init_seo_models

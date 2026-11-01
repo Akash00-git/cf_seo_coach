@@ -1,4 +1,4 @@
-# Part of CF SEO Coach. See LICENSE file for full copyright and licensing details.
+# Part of SEO Coach. Copyright (C) 2026 Webooz <akash00.hit@gmail.com>. See LICENSE for details.
 
 # Stored SEO Coach fields (cf_robots_content / cf_schema_head are computed, so
 # they have no column).
