@@ -1,6 +1,6 @@
 {
     'name': 'CF SEO Coach',
-    'version': '19.0.2.0.7',
+    'version': '19.0.2.0.8',
     'summary': 'Live Yoast-style SEO & readability coach: keyphrase, meta tags, Google snippet preview, JSON-LD schema, Open Graph, canonical & robots — every page',
     'description': """
 CF SEO Coach
