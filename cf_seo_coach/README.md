@@ -99,3 +99,7 @@ These are standard Odoo website features, so the coach does not duplicate them:
 
 **Apps → SEO Coach → Uninstall.** Your pages keep working; only the extra SEO
 fields and the coach panel are removed.
+
+---
+
+Built by **Webooz** · [webooz.in](https://webooz.in/) · Support: akash00.hit@gmail.com

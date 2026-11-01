@@ -25,4 +25,4 @@ including no conflicts with POS and Inventory.
 Copy `cf_seo_coach/` into your Odoo add-ons path (or **Apps → Upload** the zip),
 then **Apps → Update Apps List** and install **SEO Coach**.
 
-Module: [`cf_seo_coach/`](cf_seo_coach/) · License: LGPL-3 · Support: akash00.hit@gmail.com
+Module: [`cf_seo_coach/`](cf_seo_coach/) · By [Webooz](https://webooz.in/) · License: LGPL-3 · Support: akash00.hit@gmail.com
