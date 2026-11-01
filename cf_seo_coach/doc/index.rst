@@ -2,113 +2,78 @@
 SEO Coach
 =========
 
-All-in-one, Yoast-style SEO toolkit built natively in Odoo 19. A live SEO &
-readability coach on every website page, plus the site-wide tools you need to
-rank: Google Tag Manager & GA4, an ``llms.txt`` file for AI search, a bulk SEO
-editor, SEO hardening and automatic JSON-LD schema. No external libraries;
-depends only on **Website**.
+A live, Yoast-style SEO coach for Odoo 19 — plus every site-wide tool you need
+to rank. Built natively in Odoo, with no external libraries, and depends only
+on **Website**.
 
-Features
-========
+.. tip::
 
-Live SEO & readability coach
-----------------------------
+   Nothing to set up to start. The moment you install it, the live SEO and
+   readability coach is active on every website page.
 
-* Focus keyphrase analysis: keyphrase in the title, URL, intro, subheadings
-  and keyphrase density.
-* Readability analysis: sentence length, paragraphs, subheadings and the
-  Flesch reading-ease score.
-* Editable Google snippet preview (desktop / mobile).
-* Social sharing control (Facebook / X title, description and image).
-* Per-page JSON-LD schema, canonical URL and meta-robots directives.
+What you get
+============
 
-Google Tag Manager & GA4
-------------------------
+- **Live coach** — SEO and readability scores on every page, with green /
+  orange / red tips as you write.
+- **Google Tag Manager & GA4** — add both to the whole site, no code.
+- **llms.txt** — let AI search (ChatGPT, Perplexity, Gemini) find your pages.
+- **Bulk SEO editor** — edit many pages at once.
+- **SEO hardening** — keep duplicate pages out of Google.
+- **Auto JSON-LD schema** — structured data on your homepage with one toggle.
 
-Paste your GTM container id and GA4 measurement id in the website settings and
-the scripts are injected across the whole site automatically.
+Where everything is
+===================
 
-llms.txt for AI search
-----------------------
+.. list-table::
+   :header-rows: 1
+   :widths: 45 55
 
-Publish an ``/llms.txt`` file that lists your pages, blog posts, products and
-events so AI search engines (ChatGPT, Perplexity, Gemini) can discover you.
+   * - Feature
+     - Where to set it
+   * - Live coach (keyphrase, scores, social, schema, robots)
+     - Open a page, click **Edit**, then **Optimize SEO** (section *SEO Coach*)
+   * - GTM / GA4 / llms.txt / hardening / auto-schema
+     - **Configuration -> Settings -> SEO Coach**
+   * - Bulk SEO editor
+     - Top menu **SEO Coach -> Bulk SEO (Pages)**
+   * - llms.txt file
+     - ``your-site.com/llms.txt``
 
-Bulk SEO editor
----------------
+Step by step
+============
 
-Set the focus keyphrase, robots flags and canonical URL across many pages at
-once from a single inline-editable list.
-
-SEO hardening
+1. Live coach
 -------------
 
-Optionally no-index filtered / query-string URLs and the site-search results
-page so duplicate pages do not dilute your ranking.
+Open any page, click **Edit**, then **Optimize SEO**. Scroll to **SEO Coach**,
+type your focus keyphrase, and watch the scores and tips update live. Save.
 
-Auto JSON-LD schema
--------------------
+2. Analytics (GTM and GA4)
+--------------------------
 
-Add Organization and WebSite structured data to the homepage with one toggle.
+Go to **Configuration -> Settings -> SEO Coach**. Paste your GTM id
+(``GTM-XXXXXXX``) and/or GA4 id (``G-XXXXXXXXXX``) and save. Check it with
+right-click -> **View Page Source** and search for ``googletagmanager``.
 
-Setup and configuration
-=======================
+3. llms.txt, hardening and schema
+---------------------------------
 
-Nothing to configure to start: once installed, the live coach is already
-active on every page. Below is where each feature lives.
+In the same **SEO Coach** settings block, turn on what you need. Once enabled,
+llms.txt is served at ``/llms.txt``.
 
-1. Live coach (per page)
-------------------------
+4. Bulk editing
+---------------
 
-Open any website page, click **Edit**, then **Optimize SEO**. Scroll to the
-**SEO Coach** section and set the focus keyphrase, related keyphrases, social
-fields, JSON-LD schema, canonical URL and robots flags. The **SEO** and
-**Readability** scores update live. Click **Save**.
+Open **SEO Coach -> Bulk SEO (Pages)**, tick several rows, and set the
+keyphrase or robots flags for all of them at once.
 
-2. Google Tag Manager and GA4
------------------------------
+.. note::
 
-Open **Website → Configuration → Settings** and scroll to the **SEO Coach**
-block. Paste your GTM id (``GTM-XXXXXXX``) and/or GA4 id (``G-XXXXXXXXXX``),
-then save. Verify with right-click → **View Page Source** and search for
-``googletagmanager``.
-
-3. llms.txt
------------
-
-In the same **SEO Coach** settings block, turn on **AI search (llms.txt)** and
-save. The file is served at ``/llms.txt``.
-
-4. SEO hardening
-----------------
-
-In the same block, turn on **SEO hardening** to no-index filtered / query
-string URLs and the site-search results page.
-
-5. Auto JSON-LD schema
-----------------------
-
-In the same block, turn on **Auto JSON-LD schema**. Organization and WebSite
-structured data is added to the homepage automatically.
-
-6. Bulk SEO editor
-------------------
-
-Open the top-level **SEO Coach → Bulk SEO (Pages)** menu (next to
-*Configuration* in the Website app). Tick several rows and set the focus
-keyphrase, no-index flag or canonical URL for all of them at once.
-
-Uninstall
-=========
-
-Open **Apps → SEO Coach → Uninstall**. Your pages keep working; only the extra
-SEO fields and the coach panel are removed. The uninstall is clean and leaves
-no orphan columns behind.
+   You can uninstall any time from **Apps -> SEO Coach -> Uninstall**. Your
+   pages keep working and nothing is left behind.
 
 Support
 =======
 
-Built by **Webooz**.
-
-* Website: https://webooz.in/
-* Support: akash00.hit@gmail.com
+Built by **Webooz** — https://webooz.in/ — akash00.hit@gmail.com
