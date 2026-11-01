@@ -9,7 +9,7 @@ is required; it depends only on **Website**.
 
 ## 1. Install
 
-1. Copy the `seo_coach` folder into your Odoo add-ons path
+1. Copy the `cf_seo_coach` folder into your Odoo add-ons path
    (or upload the `.zip` in **Apps → Upload**).
 2. **Apps → Update Apps List**.
 3. Search **SEO Coach** and click **Install**.

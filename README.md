@@ -22,7 +22,7 @@ All features opt-in and website-scoped. Tested end-to-end on Odoo 19 Enterprise,
 including no conflicts with POS and Inventory.
 
 ## Install
-Copy `seo_coach/` into your Odoo add-ons path (or **Apps → Upload** the zip),
+Copy `cf_seo_coach/` into your Odoo add-ons path (or **Apps → Upload** the zip),
 then **Apps → Update Apps List** and install **SEO Coach**.
 
-Module: [`seo_coach/`](seo_coach/) · License: LGPL-3 · Support: akash00.hit@gmail.com
+Module: [`cf_seo_coach/`](cf_seo_coach/) · License: LGPL-3 · Support: akash00.hit@gmail.com
