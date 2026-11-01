@@ -1,4 +1,4 @@
-# CF SEO Coach — user manual
+# SEO Coach — user manual
 
 A Yoast-style SEO & readability coach built natively in Odoo (OWL). It works on
 **every website page**: static pages (Home, About, service pages), blog posts,

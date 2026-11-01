@@ -1,9 +1,9 @@
 {
-    'name': 'CF SEO Coach',
-    'version': '19.0.2.0.8',
+    'name': 'SEO Coach',
+    'version': '19.0.2.0.9',
     'summary': 'Live Yoast-style SEO & readability coach: keyphrase, meta tags, Google snippet preview, JSON-LD schema, Open Graph, canonical & robots — every page',
     'description': """
-CF SEO Coach
+SEO Coach
 ============
 A Yoast-inspired, real-time SEO and readability assistant built natively in
 Odoo (OWL). It analyses your focus keyphrase, meta title and meta description,
@@ -34,10 +34,10 @@ manager, schema / structured-data (JSON-LD) tools, readability analysis or
 on-page SEO optimisation for your Odoo website.
 """,
     'category': 'Website/Website',
-    'author': 'ChoiceFlow',
+    'author': 'Webooz',
     'website': 'https://github.com/Akash00-git/cf_seo_coach',
     'support': 'akash00.hit@gmail.com',
-    'maintainer': 'ChoiceFlow',
+    'maintainer': 'Akash',
     'license': 'LGPL-3',
     'depends': ['website'],
     'data': [

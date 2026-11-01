@@ -1,4 +1,4 @@
-# CF SEO Coach — Odoo 19 module
+# SEO Coach — Odoo 19 module
 
 A Yoast-style, real-time **SEO & readability coach** for every Odoo website page
 (static pages, blog posts, eCommerce products, events). Built natively in OWL —
