@@ -85,12 +85,65 @@
   </div>
 
   <div class="oe_row oe_spaced">
-    <h3 class="oe_slogan">Where to find it</h3>
-    <p style="max-width:860px;margin:0 auto;font-size:15px;line-height:1.7">
-      The coach lives in any page's <b>Optimize SEO</b> window. The site-wide
-      tools are in <b>Website → Configuration → Settings → SEO Coach</b>, and the
-      bulk editor is under <b>Website → Configuration → SEO Coach → Bulk SEO</b>.
+    <h2 class="oe_slogan">Setup &amp; configuration guide</h2>
+    <p style="max-width:860px;margin:0 auto 18px;font-size:15px;line-height:1.7;text-align:center">
+      Nothing to configure to start — once installed, the live coach is already active on
+      every page. Below is exactly where to set up each feature and where every setting lives.
     </p>
+    <div style="max-width:900px;margin:0 auto;font-size:15px;line-height:1.7">
+      <h4 style="color:#6d28d9;margin-bottom:4px">1 &middot; Live SEO &amp; readability coach (per page)</h4>
+      <p style="margin:0 0 16px">
+        Open any website page &rarr; click <b>Edit</b> (top-right) &rarr; <b>Optimize SEO</b>.
+        Scroll to the <b>SEO Coach</b> section. Set the <b>focus keyphrase</b>, related
+        keyphrases, cornerstone, social title/description/image, JSON-LD schema, canonical URL
+        and robots flags. The <b>SEO</b> and <b>Readability</b> scores update live. Click <b>Save</b>.
+      </p>
+      <h4 style="color:#6d28d9;margin-bottom:4px">2 &middot; Google Tag Manager &amp; GA4 (whole site)</h4>
+      <p style="margin:0 0 16px">
+        <b>Website &rarr; Configuration &rarr; Settings</b> &rarr; scroll to the <b>SEO Coach</b> block.
+        Paste your <b>GTM id</b> (<code>GTM-XXXXXXX</code>) and/or <b>GA4 id</b>
+        (<code>G-XXXXXXXXXX</code>) &rarr; <b>Save</b>. The scripts are injected on every page
+        automatically (leave empty to disable). Verify with right-click &rarr;
+        <b>View Page Source</b> &rarr; search <code>googletagmanager</code>.
+      </p>
+      <h4 style="color:#6d28d9;margin-bottom:4px">3 &middot; llms.txt for AI search</h4>
+      <p style="margin:0 0 16px">
+        Same <b>Settings &rarr; SEO Coach</b> block &rarr; turn on <b>AI search (llms.txt)</b>
+        and (optionally) write a short intro &rarr; <b>Save</b>. Your file is published at
+        <b>your-site.com/llms.txt</b>.
+      </p>
+      <h4 style="color:#6d28d9;margin-bottom:4px">4 &middot; SEO hardening</h4>
+      <p style="margin:0 0 16px">
+        Same <b>Settings &rarr; SEO Coach</b> block &rarr; turn on <b>SEO hardening</b> to
+        no-index filtered / query-string URLs and the site-search results page, so duplicate
+        pages don't dilute your ranking.
+      </p>
+      <h4 style="color:#6d28d9;margin-bottom:4px">5 &middot; Auto JSON-LD schema</h4>
+      <p style="margin:0 0 16px">
+        Same <b>Settings &rarr; SEO Coach</b> block &rarr; turn on <b>Auto JSON-LD schema</b>.
+        Organization + WebSite structured data is added to your homepage automatically.
+      </p>
+      <h4 style="color:#6d28d9;margin-bottom:4px">6 &middot; Bulk SEO editor</h4>
+      <p style="margin:0 0 16px">
+        Top menu <b>SEO Coach &rarr; Bulk SEO (Pages)</b> &mdash; a top-level menu in the
+        Website app, next to <i>Configuration</i>. It opens an editable list of all your pages:
+        tick several rows and set the focus keyphrase, no-index or canonical for all at once.
+      </p>
+    </div>
+  </div>
+
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">Quick settings map</h3>
+    <table style="max-width:860px;margin:0 auto;border-collapse:collapse;font-size:14px;width:100%">
+      <tr style="background:#f3f0ff">
+        <th style="text-align:left;padding:8px;border:1px solid #e5e7eb">Feature</th>
+        <th style="text-align:left;padding:8px;border:1px solid #e5e7eb">Where to set it</th>
+      </tr>
+      <tr><td style="padding:8px;border:1px solid #e5e7eb">Per-page coach: keyphrase, social, schema, robots</td><td style="padding:8px;border:1px solid #e5e7eb">Page &rarr; Edit &rarr; <b>Optimize SEO</b> &rarr; SEO Coach</td></tr>
+      <tr><td style="padding:8px;border:1px solid #e5e7eb">GTM / GA4 / llms.txt / hardening / auto-schema</td><td style="padding:8px;border:1px solid #e5e7eb"><b>Configuration &rarr; Settings &rarr; SEO Coach</b></td></tr>
+      <tr><td style="padding:8px;border:1px solid #e5e7eb">Bulk SEO editor</td><td style="padding:8px;border:1px solid #e5e7eb">Top menu <b>SEO Coach &rarr; Bulk SEO (Pages)</b></td></tr>
+      <tr><td style="padding:8px;border:1px solid #e5e7eb">llms.txt output</td><td style="padding:8px;border:1px solid #e5e7eb"><b>your-site.com/llms.txt</b></td></tr>
+    </table>
   </div>
 
   <div class="oe_row oe_spaced">
