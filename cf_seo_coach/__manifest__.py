@@ -1,6 +1,6 @@
 {
     'name': 'SEO Coach',
-    'version': '19.0.3.0.11',
+    'version': '19.0.3.0.12',
     'summary': 'All-in-one SEO toolkit: live Yoast-style coach, Google Tag Manager & GA4, llms.txt for AI search, JSON-LD schema, bulk SEO editor, SEO hardening',
     'description': """
 SEO Coach — the all-in-one Odoo SEO toolkit
@@ -18,7 +18,7 @@ Website — no extra apps required.
 - Readability analysis: sentence length, paragraphs, subheadings, Flesch score.
 - Editable Google snippet preview (desktop / mobile).
 - Social sharing control (Facebook / X title, description, image).
-- Per-page JSON-LD schema box, canonical URL and meta-robots directives.
+- Per-page JSON-LD schema: multiple named blocks (add / delete), canonical URL and meta-robots directives.
 
 2. Analytics injection — Google Tag Manager & GA4
 -------------------------------------------------

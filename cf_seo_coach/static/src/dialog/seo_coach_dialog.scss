@@ -29,6 +29,35 @@
     }
     .cf-seo-count { opacity: 0.6; text-transform: none; letter-spacing: 0; font-weight: 400; }
     .cf-seo-schema { font-family: monospace; font-size: 12px; }
+    .cf-seo-schema-block {
+        border: 1px solid rgba(128, 128, 128, 0.3);
+        border-radius: 6px;
+        padding: 8px;
+        margin-bottom: 8px;
+    }
+    .cf-seo-schema-block-head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 6px;
+    }
+    .cf-seo-schema-name { flex: 1 1 auto; font-weight: 600; }
+    .cf-seo-schema-del {
+        flex: 0 0 auto;
+        border: 0;
+        background: transparent;
+        color: #dc3232;
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+        padding: 0 8px;
+        border-radius: 4px;
+    }
+    .cf-seo-schema-del:hover { background: rgba(220, 50, 50, 0.12); }
+    .cf-seo-schema-valid { font-size: 11px; margin-top: 4px; min-height: 13px; opacity: 0.85; }
+    .cf-seo-valid-ok { color: #4caf50; }
+    .cf-seo-valid-bad { color: #dc3232; }
+    .cf-seo-add-schema { font-size: 12px; }
 
     .cf-seo-list {
         list-style: none;

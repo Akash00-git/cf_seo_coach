@@ -60,11 +60,22 @@
           </div>
 
           <div class="cf-seo-section">
-            <div class="cf-seo-section-title">
-              Schema (JSON-LD) <span class="cf-seo-count" t-esc="cfSchemaValid()"/>
-            </div>
-            <textarea class="form-control cf-seo-schema" rows="4" t-model="cf.schema"
-                      placeholder='Paste JSON-LD, e.g. {"@context":"https://schema.org","@type":"Article","headline":"..."}'/>
+            <div class="cf-seo-section-title">Schema / Structured data (JSON-LD)</div>
+            <t t-foreach="cf.schemaBlocks" t-as="block" t-key="block_index">
+              <div class="cf-seo-schema-block">
+                <div class="cf-seo-schema-block-head">
+                  <input type="text" class="form-control cf-seo-schema-name" t-model="block.name"
+                         placeholder="Name (e.g. Article, FAQPage, Product)"/>
+                  <button type="button" class="cf-seo-schema-del" title="Remove this block"
+                          t-on-click="() => this.cfRemoveSchemaBlock(block_index)">&#215;</button>
+                </div>
+                <textarea class="form-control cf-seo-schema" rows="4" t-model="block.json"
+                          placeholder='Paste JSON-LD, e.g. {"@context":"https://schema.org","@type":"Article","headline":"..."}'/>
+                <div t-att-class="cfBlockValidClass(block)" t-esc="cfBlockValid(block)"/>
+              </div>
+            </t>
+            <button type="button" class="btn btn-sm btn-outline-primary cf-seo-add-schema mt-2"
+                    t-on-click="cfAddSchemaBlock">+ Add Schema Block</button>
           </div>
 
           <div class="cf-seo-section">

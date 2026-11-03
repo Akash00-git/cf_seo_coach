@@ -107,17 +107,34 @@ class WebsiteSeoMetadata(models.AbstractModel):
                 continue
             try:
                 data = json.loads(raw)
+            except (ValueError, TypeError):
+                data = None
+            if isinstance(data, dict) and isinstance(data.get('cf_blocks'), list):
+                # SEO Coach multi-block format: one <script> per named block.
+                parts = []
+                for b in data['cf_blocks']:
+                    js = (b.get('json') or '').strip() if isinstance(b, dict) else ''
+                    if not js:
+                        continue
+                    try:
+                        parts.append('<script type="application/ld+json">%s</script>'
+                                     % json.dumps(json.loads(js)))
+                    except (ValueError, TypeError):
+                        parts.append('<script type="application/ld+json">%s</script>' % js)
+                out = ''.join(parts)
+            elif data is not None:
+                # legacy: a single raw JSON-LD object or an array of them.
                 blocks = data if isinstance(data, list) else [data]
                 out = ''.join(
                     '<script type="application/ld+json">%s</script>' % json.dumps(b)
                     for b in blocks
                 )
-            except (ValueError, TypeError):
-                # not valid JSON: the user may have pasted full <script> tags or
-                # several raw objects; emit as-is so nothing is silently dropped.
+            else:
+                # not valid JSON: the user may have pasted full <script> tags;
+                # emit as-is so nothing is silently dropped.
                 out = raw if '<script' in raw.lower() else \
                     '<script type="application/ld+json">%s</script>' % raw
-            rec.cf_schema_head = Markup(out)
+            rec.cf_schema_head = Markup(out) if out else False
 
     def get_website_meta(self):
         """Let the social fields override the OpenGraph / Twitter tags on page

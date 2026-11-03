@@ -37,7 +37,7 @@ patch(OptimizeSEODialog.prototype, {
             socialTitle: "",
             socialDescription: "",
             socialImage: "",
-            schema: "",
+            schemaBlocks: [],
             canonical: "",
             noindex: false,
             nofollow: false,
@@ -76,7 +76,7 @@ patch(OptimizeSEODialog.prototype, {
             this.cf.socialTitle = r.cf_social_title || "";
             this.cf.socialDescription = r.cf_social_description || "";
             this.cf.socialImage = r.cf_social_image || "";
-            this.cf.schema = r.cf_schema_jsonld || "";
+            this.cf.schemaBlocks = this.cfParseSchema(r.cf_schema_jsonld);
             this.cf.canonical = r.cf_canonical_url || "";
             this.cf.noindex = !!r.cf_robots_noindex;
             this.cf.nofollow = !!r.cf_robots_nofollow;
@@ -122,17 +122,62 @@ patch(OptimizeSEODialog.prototype, {
     cfDot(score) {
         return "cf-seo-dot cf-seo-dot-" + score;
     },
-    cfSchemaValid() {
-        const raw = (this.cf.schema || "").trim();
+    cfBlockValid(block) {
+        const raw = (block.json || "").trim();
         if (!raw) {
             return "";
         }
         try {
             JSON.parse(raw);
-            return "Valid JSON";
+            return "✓ Valid JSON";
         } catch {
             return "Check JSON";
         }
+    },
+    cfBlockValidClass(block) {
+        const raw = (block.json || "").trim();
+        if (!raw) {
+            return "cf-seo-schema-valid";
+        }
+        try {
+            JSON.parse(raw);
+            return "cf-seo-schema-valid cf-seo-valid-ok";
+        } catch {
+            return "cf-seo-schema-valid cf-seo-valid-bad";
+        }
+    },
+    cfAddSchemaBlock() {
+        this.cf.schemaBlocks.push({ name: "", json: "" });
+    },
+    cfRemoveSchemaBlock(index) {
+        this.cf.schemaBlocks.splice(index, 1);
+        if (!this.cf.schemaBlocks.length) {
+            this.cf.schemaBlocks.push({ name: "", json: "" });
+        }
+    },
+    cfParseSchema(raw) {
+        raw = (raw || "").trim();
+        if (!raw) {
+            return [{ name: "", json: "" }];
+        }
+        try {
+            const data = JSON.parse(raw);
+            if (data && !Array.isArray(data) && Array.isArray(data.cf_blocks)) {
+                const blocks = data.cf_blocks
+                    .filter((b) => b && typeof b === "object")
+                    .map((b) => ({ name: b.name || "", json: b.json || "" }));
+                return blocks.length ? blocks : [{ name: "", json: "" }];
+            }
+        } catch {
+            // fall through: treat the stored text as one legacy block
+        }
+        return [{ name: "", json: raw }];
+    },
+    cfSerializeSchema() {
+        const blocks = (this.cf.schemaBlocks || [])
+            .map((b) => ({ name: (b.name || "").trim(), json: (b.json || "").trim() }))
+            .filter((b) => b.json);
+        return blocks.length ? JSON.stringify({ cf_blocks: blocks }) : "";
     },
 
     async save() {
@@ -147,7 +192,7 @@ patch(OptimizeSEODialog.prototype, {
                     cf_social_title: this.cf.socialTitle,
                     cf_social_description: this.cf.socialDescription,
                     cf_social_image: this.cf.socialImage,
-                    cf_schema_jsonld: this.cf.schema,
+                    cf_schema_jsonld: this.cfSerializeSchema(),
                     cf_canonical_url: this.cf.canonical,
                     cf_robots_noindex: this.cf.noindex,
                     cf_robots_nofollow: this.cf.nofollow,
