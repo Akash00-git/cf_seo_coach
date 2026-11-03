@@ -1,0 +1,104 @@
+<odoo>
+
+  <record id="view_cf_seo_audit_list" model="ir.ui.view">
+    <field name="name">cf.seo.audit.list</field>
+    <field name="model">cf.seo.audit</field>
+    <field name="arch" type="xml">
+      <list string="SEO Audits"
+            decoration-success="score &gt;= 80"
+            decoration-warning="score &gt;= 50 and score &lt; 80"
+            decoration-danger="score &lt; 50">
+        <header>
+          <button name="action_run_audit" type="object" string="Run new audit" class="btn-primary"/>
+        </header>
+        <field name="name"/>
+        <field name="date"/>
+        <field name="pages_scanned"/>
+        <field name="error_count" string="Errors"/>
+        <field name="warning_count" string="Warnings"/>
+        <field name="issue_count" string="Issues"/>
+        <field name="score" string="Score" widget="progressbar"/>
+      </list>
+    </field>
+  </record>
+
+  <record id="view_cf_seo_audit_form" model="ir.ui.view">
+    <field name="name">cf.seo.audit.form</field>
+    <field name="model">cf.seo.audit</field>
+    <field name="arch" type="xml">
+      <form string="SEO Audit">
+        <header>
+          <button name="action_run_audit" type="object" string="Run new audit" class="btn-primary"/>
+        </header>
+        <sheet>
+          <div class="oe_title">
+            <h1><field name="name" readonly="1"/></h1>
+          </div>
+          <group>
+            <group>
+              <field name="website_id"/>
+              <field name="date"/>
+              <field name="pages_scanned"/>
+            </group>
+            <group>
+              <field name="score" widget="progressbar"/>
+              <field name="error_count"/>
+              <field name="warning_count"/>
+              <field name="issue_count"/>
+            </group>
+          </group>
+          <notebook>
+            <page string="Issues">
+              <field name="issue_ids" readonly="1">
+                <list decoration-danger="severity == 'error'"
+                      decoration-warning="severity == 'warning'"
+                      decoration-muted="severity == 'info'">
+                  <field name="severity" widget="badge"
+                         decoration-danger="severity == 'error'"
+                         decoration-warning="severity == 'warning'"/>
+                  <field name="message"/>
+                  <field name="page_name"/>
+                  <field name="page_url" widget="url"/>
+                  <field name="check" optional="hide"/>
+                </list>
+              </field>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_cf_seo_audit_issue_search" model="ir.ui.view">
+    <field name="name">cf.seo.audit.issue.search</field>
+    <field name="model">cf.seo.audit.issue</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="message"/>
+        <field name="page_name"/>
+        <filter name="errors" string="Errors" domain="[('severity','=','error')]"/>
+        <filter name="warnings" string="Warnings" domain="[('severity','=','warning')]"/>
+        <separator/>
+        <filter name="group_severity" string="Severity" context="{'group_by':'severity'}"/>
+        <filter name="group_check" string="Check" context="{'group_by':'check'}"/>
+        <filter name="group_page" string="Page" context="{'group_by':'page_name'}"/>
+      </search>
+    </field>
+  </record>
+
+  <record id="action_cf_seo_audit" model="ir.actions.act_window">
+    <field name="name">Site Audit</field>
+    <field name="res_model">cf.seo.audit</field>
+    <field name="view_mode">list,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">No audits yet</p>
+      <p>Click <b>Run new audit</b> to scan every published page and get a health
+      score with the exact SEO issues to fix.</p>
+    </field>
+  </record>
+
+  <menuitem id="menu_seo_audit" name="Site Audit"
+            parent="menu_seo_coach_root"
+            action="action_cf_seo_audit" sequence="20"/>
+
+</odoo>

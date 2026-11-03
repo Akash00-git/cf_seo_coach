@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cf_seo_audit_user,cf.seo.audit.user,model_cf_seo_audit,base.group_user,1,1,1,1
+access_cf_seo_audit_issue_user,cf.seo.audit.issue.user,model_cf_seo_audit_issue,base.group_user,1,1,1,1
