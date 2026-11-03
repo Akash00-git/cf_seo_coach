@@ -2,7 +2,7 @@
 SEO Coach
 =========
 
-:Version: 19.0.3.0.12 (for Odoo 19, LGPL-3, by Webooz)
+:Version: 19.0.3.1.0 (for Odoo 19, LGPL-3, by Webooz)
 
 A live, Yoast-style SEO coach for Odoo 19 — plus every site-wide tool you need
 to rank. Built natively in Odoo, with no external libraries, and depends only
@@ -23,6 +23,49 @@ What you get
 - **Bulk SEO editor** — edit many pages at once.
 - **SEO hardening** — keep duplicate pages out of Google.
 - **Auto JSON-LD schema** — structured data on your homepage with one toggle.
+- **Site Audit** — crawl your pages, posts and products and get a 0-100 SEO
+  health score with a prioritised list of issues to fix.
+
+Installation
+============
+
+SEO Coach is a full app (it has code), so install it the standard Odoo way: put
+the module folder in your Odoo **add-ons** (modules) folder, then install it
+from **Apps**.
+
+.. warning::
+
+   Do **not** use **Apps -> Import Module** / "Upload a Module" (the zip upload).
+   That screen loads data-only add-ons and does not load code, so the coach and
+   other features would not actually run. Use one of the methods below.
+
+Odoo.sh
+-------
+
+1. Add the ``cf_seo_coach`` folder to your Odoo.sh project's add-ons (commit it
+   to your project's GitHub repository, or add this repository as a submodule)
+   and push. Odoo.sh rebuilds automatically.
+2. Open **Apps -> Update Apps List**, search **SEO Coach**, click **Install**.
+
+Self-hosted / on-premise
+------------------------
+
+1. Get the ``cf_seo_coach`` folder (the one that contains ``__manifest__.py``)
+   from the Odoo Apps download or from git.
+2. Copy that folder into your server's add-ons path. With git::
+
+      git clone -b 19.0 https://github.com/Akash00-git/cf_seo_coach.git /tmp/src
+      cp -r /tmp/src/cf_seo_coach /path/to/your/odoo/addons/cf_seo_coach
+
+3. Restart the Odoo service.
+4. In Odoo open **Apps**, click **Update Apps List**, clear the search filter,
+   type **SEO Coach**, and click **Install**.
+
+Odoo Online (the free odoo.com / SaaS)
+--------------------------------------
+
+Odoo Online does not allow third-party apps, so this app cannot run there. Use
+Odoo.sh or a self-hosted Odoo.
 
 Where everything is
 ===================

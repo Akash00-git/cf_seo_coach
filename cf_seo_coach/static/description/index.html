@@ -17,7 +17,7 @@
       ✔ Tested end-to-end on Odoo 19 Enterprise — no conflicts with POS or Inventory.
     </p>
     <p style="text-align:center;margin-top:8px;font-size:14px;color:#6b7280">
-      <b style="color:#111">Version 19.0.3.0.12</b> &nbsp;·&nbsp; Odoo 19 &nbsp;·&nbsp; LGPL-3 &nbsp;·&nbsp; by Webooz
+      <b style="color:#111">Version 19.0.3.1.0</b> &nbsp;·&nbsp; Odoo 19 &nbsp;·&nbsp; LGPL-3 &nbsp;·&nbsp; by Webooz
     </p>
   </div>
 
@@ -164,6 +164,31 @@
       <p><b>19.0.3.0.11</b> &mdash; Saved SEO fields now reload when you reopen the Optimize SEO window. Lock-free startup (no ALTER TABLE on a healthy database). Clean uninstall with no leftover columns.</p>
       <p><b>19.0.3.0</b> &mdash; Major update: Google Tag Manager &amp; GA4 injection, an <b>/llms.txt</b> file for AI search, a bulk SEO editor, SEO hardening and automatic JSON-LD schema.</p>
       <p><b>19.0.2.x</b> &mdash; Live Yoast-style SEO &amp; readability coach on every website page.</p>
+    </div>
+  </div>
+
+  <div class="oe_row oe_spaced" style="background:#faf8ff;border:1px solid #ede9fe;border-radius:12px;padding:8px 14px 18px">
+    <h3 class="oe_slogan">How to install</h3>
+    <p style="max-width:860px;margin:0 auto 10px;font-size:15px;line-height:1.7">
+      SEO Coach is a full app (it has code), so install it like any standard Odoo
+      app: put the module folder in your Odoo <b>add-ons</b> (modules) folder,
+      then install it from <b>Apps</b>. It depends only on <b>Website</b>. Choose
+      the way that matches your hosting:
+    </p>
+    <div style="max-width:860px;margin:0 auto;font-size:15px;line-height:1.7">
+      <p style="margin:6px 0"><b>Odoo.sh</b> — add the <code>cf_seo_coach</code> folder to your project's add-ons (your GitHub repo or a submodule) and push. Odoo.sh rebuilds, then install from Apps.</p>
+      <p style="margin:6px 0"><b>Self-hosted / on-premise</b> — copy the <code>cf_seo_coach</code> folder into your server's add-ons path and restart Odoo:</p>
+      <pre style="max-width:860px;margin:8px auto;background:#0f172a;color:#e2e8f0;padding:12px 14px;border-radius:8px;font-size:13px;overflow:auto">git clone -b 19.0 https://github.com/Akash00-git/cf_seo_coach.git /tmp/src
+cp -r /tmp/src/cf_seo_coach /path/to/your/odoo/addons/cf_seo_coach
+# then restart the Odoo service</pre>
+      <p style="margin:6px 0"><b>Odoo Online</b> (the free odoo.com / SaaS) does not allow third-party apps — use Odoo.sh or a self-hosted Odoo.</p>
+    </div>
+    <p style="max-width:860px;margin:14px auto 0;font-size:15px;line-height:1.7">
+      Then, in Odoo: open <b>Apps</b> → click <b>Update Apps List</b> → search
+      <b>SEO Coach</b> → click <b>Install</b>.
+    </p>
+    <div class="oe_row oe_spaced" style="text-align:center">
+      <img src="install_steps.png" style="max-width:100%;height:auto;border-radius:10px;border:1px solid #e5e7eb"/>
     </div>
   </div>
 
