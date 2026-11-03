@@ -46,27 +46,43 @@ patch(OptimizeSEODialog.prototype, {
             noimageindex: false,
         });
         onWillStart(async () => {
-            if (!this.object || !this.canEditSeo) {
+            // The base dialog sets this.object only AFTER `await this.waitForIframe()`,
+            // and OWL runs all onWillStart hooks concurrently (Promise.all). So if we
+            // read this.object here it is still undefined and we return early, leaving
+            // every field blank on reopen. Resolve the record ourselves (exactly like
+            // the base does) after awaiting the iframe, so saved values load back in.
+            await this.waitForIframe();
+            this.cf.loaded = true;
+            const {
+                metadata: { mainObject, seoObject },
+            } = this.website.currentWebsite;
+            const object = seoObject || mainObject;
+            if (!object) {
                 return;
             }
-            const recs = await this.orm.read(this.object.model, [this.object.id], CF_FIELDS);
-            const r = recs && recs[0];
-            if (r) {
-                this.cf.keyphrase = r.cf_seo_keyphrase || "";
-                this.cf.related = r.cf_seo_related_keyphrases || "";
-                this.cf.cornerstone = !!r.cf_is_cornerstone;
-                this.cf.socialTitle = r.cf_social_title || "";
-                this.cf.socialDescription = r.cf_social_description || "";
-                this.cf.socialImage = r.cf_social_image || "";
-                this.cf.schema = r.cf_schema_jsonld || "";
-                this.cf.canonical = r.cf_canonical_url || "";
-                this.cf.noindex = !!r.cf_robots_noindex;
-                this.cf.nofollow = !!r.cf_robots_nofollow;
-                this.cf.noarchive = !!r.cf_robots_noarchive;
-                this.cf.nosnippet = !!r.cf_robots_nosnippet;
-                this.cf.noimageindex = !!r.cf_robots_noimageindex;
+            let recs;
+            try {
+                recs = await this.orm.read(object.model, [object.id], CF_FIELDS);
+            } catch {
+                return; // never crash the dialog if the read fails
             }
-            this.cf.loaded = true;
+            const r = recs && recs[0];
+            if (!r) {
+                return;
+            }
+            this.cf.keyphrase = r.cf_seo_keyphrase || "";
+            this.cf.related = r.cf_seo_related_keyphrases || "";
+            this.cf.cornerstone = !!r.cf_is_cornerstone;
+            this.cf.socialTitle = r.cf_social_title || "";
+            this.cf.socialDescription = r.cf_social_description || "";
+            this.cf.socialImage = r.cf_social_image || "";
+            this.cf.schema = r.cf_schema_jsonld || "";
+            this.cf.canonical = r.cf_canonical_url || "";
+            this.cf.noindex = !!r.cf_robots_noindex;
+            this.cf.nofollow = !!r.cf_robots_nofollow;
+            this.cf.noarchive = !!r.cf_robots_noarchive;
+            this.cf.nosnippet = !!r.cf_robots_nosnippet;
+            this.cf.noimageindex = !!r.cf_robots_noimageindex;
         });
     },
 

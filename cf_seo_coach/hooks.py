@@ -20,20 +20,37 @@ def _cf_init_seo_models(env):
     ...). Odoo creates those columns on a fresh install, but an *upgrade* of
     this module churns the inherited field records and drops the columns while
     the ORM still selects them, which breaks those website pages. This is
-    called from ``_register_hook`` (after every registry load, when the fields
-    are already propagated) to re-create any missing column idempotently."""
+    called from ``_register_hook`` (after every registry load) to re-create
+    any missing column.
+
+    It must be cheap and lock-free in the common case: ``ALTER TABLE`` takes an
+    ACCESS EXCLUSIVE lock, and Odoo only allows ~15s for it at startup, so
+    running it on every load would stall worker boot under production traffic.
+    We therefore first read the catalog (lock-free) and only ALTER the columns
+    that are genuinely missing — which only happens right after an upgrade
+    (service stopped, no contention), never during normal running."""
+    cr = env.cr
+    cr.execute(
+        "SELECT table_name, column_name FROM information_schema.columns "
+        "WHERE column_name = ANY(%s)",
+        (list(CF_STORED_FIELDS),),
+    )
+    existing = {(table, col) for table, col in cr.fetchall()}
     for _name, model in env.registry.items():
         if not getattr(model, '_auto', False) or model._abstract:
             continue
         if 'cf_schema_jsonld' not in model._fields:
             continue
+        table = model._table
         for col in CF_STORED_FIELDS:
+            if (table, col) in existing:
+                continue  # already present -> skip, take no lock
             field = model._fields.get(col)
             if not field or not field.store or not field.column_type:
                 continue
-            env.cr.execute(
+            cr.execute(
                 'ALTER TABLE "%s" ADD COLUMN IF NOT EXISTS "%s" %s'
-                % (model._table, col, field.column_type[1])
+                % (table, col, field.column_type[1])
             )
 
 
