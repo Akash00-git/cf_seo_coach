@@ -2,6 +2,8 @@
 SEO Coach
 =========
 
+:Version: 19.0.3.0.11 (for Odoo 19, LGPL-3, by Webooz)
+
 A live, Yoast-style SEO coach for Odoo 19 — plus every site-wide tool you need
 to rank. Built natively in Odoo, with no external libraries, and depends only
 on **Website**.
